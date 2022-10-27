@@ -1,0 +1,5 @@
+# add ssh private key permanently 
+ssh-add aws-ante-key.pem
+
+# ssh agent private key forwarding
+ssh -A user@private-ip

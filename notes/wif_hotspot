@@ -1,0 +1,23 @@
+WORKAROUND (for Ubuntu at least):
+
+ 
+
+1. Temporarily allow 0.0.0.0/0 to SSH into the EC2 instance
+
+2. At the commandline prompt, type 
+
+echo $SSH_CONNECTION
+
+You'll get two IPs back, each with a port :
+
+166.172.254.1 16697 172.31.1.2 22
+
+3. Verify that the second one matches the public IP you see in the Mac browser at whatismyip.com. 
+
+4. If so, add the *first* one to your firewall or AWS Security Group rule. Allow all traffic (or just the ports you want) using restrictive CIDR "166.172.254.1/32" to limit it to your device only.
+
+5. *Be sure* to remove the 0.0.0.0/0 public entry to re-secure the environment.
+
+ 
+
+No instance or device restart is required. Should work immediately.

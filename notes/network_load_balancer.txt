@@ -1,0 +1,2 @@
+# check ip associated with nlb
+dnslookup my-nlb-7bb840ed1445bd17.elb.us-east-1.amazonaws.com

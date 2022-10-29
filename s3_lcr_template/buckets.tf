@@ -83,3 +83,36 @@ resource "aws_s3_bucket_policy" "deny-unencrypted" {
 }
 EOF
 }
+
+
+
+# static website
+resource "aws_s3_bucket" "playground-website-01" {
+  bucket = "playground-website-01"
+
+  tags = {
+    Name        = "Name"
+    Environment = "playground-website-01"
+  }
+}
+
+resource "aws_s3_bucket_public_access_block" "playground-website-01-pab" {
+  bucket = aws_s3_bucket.playground-website-01.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+resource "aws_s3_bucket_website_configuration" "playground-website-01-website" {
+  bucket = aws_s3_bucket.playground-website-01.bucket
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "error.html"
+  }
+}

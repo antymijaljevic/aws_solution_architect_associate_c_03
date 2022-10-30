@@ -5,6 +5,7 @@ resource "aws_instance" "web-server-1" {
   vpc_security_group_ids = [aws_security_group.playground-sg.id]
   key_name               = aws_key_pair.playground-key.key_name
   user_data              = file("scripts/subnet_id.sh")
+  user_data_replace_on_change = true
   iam_instance_profile   = aws_iam_instance_profile.playground-role-profile.name
 
 
@@ -20,6 +21,7 @@ resource "aws_instance" "web-server-2" {
   vpc_security_group_ids = [aws_security_group.playground-sg.id]
   key_name               = aws_key_pair.playground-key.key_name
   user_data              = file("scripts/subnet_id.sh")
+  user_data_replace_on_change = true
   iam_instance_profile   = aws_iam_instance_profile.playground-role-profile.name
 
   tags = {

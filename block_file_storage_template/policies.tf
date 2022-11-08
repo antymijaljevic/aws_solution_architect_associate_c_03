@@ -72,3 +72,54 @@ resource "aws_iam_role_policy" "AmazonSSMManagedInstanceCore" {
     ]
   })
 }
+
+
+
+resource "aws_iam_role_policy" "EC2InstanceProfileForImageBuilder" {
+  name = "EC2InstanceProfileForImageBuilder"
+  role = aws_iam_role.playground-role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "imagebuilder:GetComponent"
+        ],
+        "Resource" : "*"
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "kms:Decrypt"
+        ],
+        "Resource" : "*",
+        "Condition" : {
+          "ForAnyValue:StringEquals" : {
+            "kms:EncryptionContextKeys" : "aws:imagebuilder:arn",
+            "aws:CalledVia" : [
+              "imagebuilder.amazonaws.com"
+            ]
+          }
+        }
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "s3:GetObject"
+        ],
+        "Resource" : "arn:aws:s3:::ec2imagebuilder*"
+      },
+      {
+        "Effect" : "Allow",
+        "Action" : [
+          "logs:CreateLogStream",
+          "logs:CreateLogGroup",
+          "logs:PutLogEvents"
+        ],
+        "Resource" : "arn:aws:logs:*:*:log-group:/aws/imagebuilder/*"
+      },
+    ]
+  })
+}

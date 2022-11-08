@@ -15,3 +15,12 @@ resource "aws_volume_attachment" "volume-1-att" {
   volume_id   = aws_ebs_volume.volume-1.id
   instance_id = aws_instance.web-server-3.id
 }
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_snapshot
+resource "aws_ebs_snapshot" "volume-1-copy" {
+  volume_id = aws_ebs_volume.volume-1.id
+
+  tags = {
+    Name = "volume-1-copy"
+  }
+}

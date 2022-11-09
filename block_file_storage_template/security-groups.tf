@@ -55,3 +55,39 @@ resource "aws_security_group" "playground-sg" {
     Name = "playground-sg"
   }
 }
+
+
+
+# efs
+resource "aws_security_group" "efs-sg" {
+  name        = "efs-sg"
+  vpc_id      = aws_vpc.playground-vpc.id
+  description = "nfs inbound"
+
+  ingress {
+    protocol    = -1
+    self        = true
+    from_port   = 0
+    to_port     = 0
+    description = "Group Itself"
+  }
+
+  ingress {
+    protocol    = "tcp"
+    from_port   = 2049
+    to_port     = 2049
+    security_groups = ["${aws_security_group.playground-sg.id}"]
+    description = "nfs"
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "efs-sg"
+  }
+}

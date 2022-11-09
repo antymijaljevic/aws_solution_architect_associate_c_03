@@ -22,7 +22,6 @@ resource "aws_iam_role" "playground-role" {
 }
 
 #https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile
-
 resource "aws_iam_instance_profile" "playground-role-profile" {
   name = "playground-role-profile"
   role = aws_iam_role.playground-role.name

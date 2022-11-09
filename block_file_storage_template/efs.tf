@@ -28,4 +28,4 @@ resource "aws_efs_mount_target" "playground-efs-mt-1" {
 
 # sudo mkdir efs
 # sudo yum install -y amazon-efs-utils -y
-# sudo mount -t efs fs-0e6e56387652b76fa efs/
+# sudo mount -t efs fs-091d201dd56e46e2c efs/

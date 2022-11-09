@@ -9,8 +9,9 @@ terraform {
     }
   }
 }
-
 provider "aws" {
-  profile = "default"
+  region     = "us-east-1"
+  access_key = "AKIAWGFHVGZ3NL6IBRAU"
+  secret_key = "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"
 }
 

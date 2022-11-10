@@ -1,6 +1,7 @@
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/network_acl
 resource "aws_network_acl" "playground_acl" {
   vpc_id     = aws_vpc.playground_vpc.id
+  subnet_ids = flatten([aws_subnet.public_subnets.*.id, aws_subnet.private_subnets.*.id])
 
   ingress {
     protocol   = -1
@@ -23,9 +24,4 @@ resource "aws_network_acl" "playground_acl" {
   tags = {
     Name = "playground-acl"
   }
-}
-
-resource "aws_network_acl_association" "main" {
-  network_acl_id = aws_network_acl.playground_acl.id
-  subnet_id      = "${aws_subnet.public_subnets.*.id}"
 }

@@ -12,7 +12,9 @@ terraform {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs
 
 provider "aws" {
-  profile = "default"
+  region = "us-east-1"
+  access_key = "x"
+  secret_key = "x"
 }
 
 

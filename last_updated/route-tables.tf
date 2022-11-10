@@ -1,20 +1,11 @@
-# default route table
-resource "aws_default_route_table" "default-rt" {
-  default_route_table_id = aws_vpc.playground-vpc.default_route_table_id
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table
 
-  tags = {
-    Name = "default-rt"
-  }
-}
-
-
-# public route table
 resource "aws_route_table" "public_route_table" {
-  vpc_id = aws_vpc.playground-vpc.id
+  vpc_id = aws_vpc.playground_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.playground-igw.id
+    gateway_id = aws_internet_gateway.playground_igw.id
   }
 
   tags = {
@@ -23,13 +14,12 @@ resource "aws_route_table" "public_route_table" {
 }
 
 
-# private route table
 resource "aws_route_table" "private_route_table" {
-  vpc_id = aws_vpc.playground-vpc.id
+  vpc_id = aws_vpc.playground_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    nat_gateway_id = aws_nat_gateway.playground-nat.id
+    nat_gateway_id = aws_nat_gateway.playground_nat.id
   }
 
   tags = {
@@ -38,7 +28,8 @@ resource "aws_route_table" "private_route_table" {
 }
 
 
-# public subnet associations
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association
+
 resource "aws_route_table_association" "public_subnet_ass" {
   count = length(var.public_subnet_cidrs)
   subnet_id = element(aws_subnet.public_subnets[*].id, count.index)
@@ -46,7 +37,6 @@ resource "aws_route_table_association" "public_subnet_ass" {
 
 }
 
-# private subnet associations
 resource "aws_route_table_association" "private_subnet_ass" {
   count = length(var.private_subnet_cidrs)
   subnet_id = element(aws_subnet.private_subnets[*].id, count.index)

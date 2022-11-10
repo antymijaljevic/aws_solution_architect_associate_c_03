@@ -1,6 +1,8 @@
 .vscode
 */playground-key.pem
 */playground-key.pub
+*/*/playground-key.pem
+*/*/playground-key.pub
 */terraform.tfstate.backup
 */.terraform.lock.hcl
 */.terraform

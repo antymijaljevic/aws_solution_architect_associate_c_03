@@ -9,7 +9,7 @@ resource "aws_subnet" "public_subnets" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "playground-vpc-public-subnet-${var.azs[count.index]}"
+    Name = "playground-public-subnet-${var.azs[count.index]}"
   }
 }
 
@@ -20,6 +20,6 @@ resource "aws_subnet" "private_subnets" {
   availability_zone = element(var.azs, count.index)
 
   tags = {
-    Name = "playground-vpc-private-subnet-${var.azs[count.index]}"
+    Name = "playground-private-subnet-${var.azs[count.index]}"
   }
 }

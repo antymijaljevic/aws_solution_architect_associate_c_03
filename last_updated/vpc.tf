@@ -1,23 +1,4 @@
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs
-
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.34"
-    }
-  }
-}
-
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs
-
-provider "aws" {
-  region = "us-east-1"
-  access_key = "x"
-  secret_key = "x"
-}
-
-
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc
 
 resource "aws_vpc" "playground_vpc" {

@@ -6,7 +6,7 @@ resource "aws_instance" "web-server-1" {
   key_name                    = aws_key_pair.playground-key.key_name
   user_data                   = file("scripts/subnet_id.sh")
   user_data_replace_on_change = true
-#   iam_instance_profile        = aws_iam_instance_profile.playground-role-profile.name
+  iam_instance_profile        = aws_iam_instance_profile.playground-role-profile.name
 
 
   tags = {
@@ -22,7 +22,7 @@ resource "aws_instance" "web-server-2" {
   key_name                    = aws_key_pair.playground-key.key_name
   user_data                   = file("scripts/subnet_id.sh")
   user_data_replace_on_change = true
-#   iam_instance_profile        = aws_iam_instance_profile.playground-role-profile.name
+  iam_instance_profile        = aws_iam_instance_profile.playground-role-profile.name
 
 
   tags = {

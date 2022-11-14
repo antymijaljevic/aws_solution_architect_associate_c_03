@@ -27,6 +27,7 @@ TASK_DEFINITION
 
 resource "aws_ecs_task_definition" "nginx_task" {
   family = "Nginx-Task"
+  network_mode = "awsvpc"
   container_definitions = jsonencode([
     {
       name      = "Nginx-Container"
@@ -43,3 +44,24 @@ resource "aws_ecs_task_definition" "nginx_task" {
     }
   ])
 }
+
+resource "aws_ecs_task_definition" "httpd_task" {
+  family = "Httpd-Task"
+  network_mode = "bridge"
+  container_definitions = jsonencode([
+    {
+      name      = "Httpd-Container"
+      image     = "httpd:2.4"
+      cpu       = 500
+      memory    = 500
+      essential = true
+      portMappings = [
+        {
+          containerPort = 80
+          hostPort      = 80
+        }
+      ]
+    }
+  ])
+}
+

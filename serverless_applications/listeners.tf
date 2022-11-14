@@ -10,14 +10,3 @@ resource "aws_lb_listener" "playground_public_alb_listener" {
     target_group_arn = aws_lb_target_group.playground_default_alb_tg.arn
   }
 }
-
-resource "aws_lb_listener" "ecs_public_alb_listener" {
-  load_balancer_arn = aws_lb.ecs_public_alb.arn
-  port              = "80"
-  protocol          = "HTTP"
-
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.ecs_default_alb_tg.arn
-  }
-}

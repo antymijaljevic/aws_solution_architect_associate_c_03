@@ -13,7 +13,7 @@ Create SQS Queue:
 	Name: ProductVisitsDataQueue
 	Type: Standard
 	
-Note the Queue URL: *QUEUE URL*
+Note the Queue URL: *QUEUE URL* https://sqs.us-east-1.amazonaws.com/041007482309/ProductVisitsDataQueue
 
 Go to AWS Lambda and create function
 	Name: productVisitsDataHandler
@@ -30,7 +30,7 @@ Configure Lambda function trigger and specify Lambda function:
     Name: productVisitsDataHandler
 
 Go to AWS CLI and send messages:
-    AWS CLI Command: `aws sqs send-message --queue-url *QUEUE URL* --message-body file://message-body-1.json`
+    AWS CLI Command: `aws sqs send-message --queue-url *https://sqs.us-east-1.amazonaws.com/041007482309/ProductVisitsDataQueue --message-body file://message-body-1.json`
     Modify: Queue name and file name
     File location: Code/build-a-serverless-app/part-1
 

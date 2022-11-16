@@ -73,7 +73,7 @@ Configure CORS. All 6 fields should be configured:
     "Access-Control-Allow-Origin" has to be specified after creating the S3 bucket as its name is used in the URL. Click Save. 
 Now click Deploy at top right and select prod Stage for deployment
 
-* Invoke URL: 
+* Invoke URL: https://4jrn11h0ye.execute-api.us-east-1.amazonaws.com/prod
 
 * Integration ID: 
 

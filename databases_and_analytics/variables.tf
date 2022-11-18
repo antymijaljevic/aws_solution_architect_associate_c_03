@@ -33,3 +33,16 @@ variable "playground_sg" {
     ports_egress  = [0]
   }
 }
+
+variable "playground_db_sg" {
+  type = object({
+    name        = string
+    description = string
+    sg_ingress  = list(string)
+  })
+  default = {
+    name        = "playground-db-sg"
+    description = "playground db security group"
+    # sg_ingress = [aws_security_group.playground_sg.id]
+  }
+}

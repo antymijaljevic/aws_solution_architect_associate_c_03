@@ -45,3 +45,32 @@ resource "aws_security_group" "playground_sg" {
     Name = var.playground_sg["name"]
   }
 }
+
+
+resource "aws_security_group" "playground_db_sg" {
+  name        = var.playground_db_sg["name"]
+  vpc_id      = aws_vpc.playground_vpc.id
+  description = var.playground_db_sg["description"]
+
+  dynamic "ingress" {
+    for_each = var.playground_db_sg.sg_ingress
+    iterator = sg
+    content {
+      protocol        = "tcp"
+      from_port       = 3306
+      to_port         = 3306
+      security_groups = [sg.value]
+    }
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = var.playground_db_sg["name"]
+  }
+}

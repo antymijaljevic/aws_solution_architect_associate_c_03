@@ -47,13 +47,22 @@ resource "aws_security_group" "playground_sg" {
 }
 
 
+# PLAYGROUND RDS SECURITY GROUP
+locals {
+    playground_db_sg = {
+    name        = "playground-db-sg"
+    description = "playground db security group"
+    sg_ingress  = [aws_security_group.playground_sg.id]
+  }
+}
+
 resource "aws_security_group" "playground_db_sg" {
-  name        = var.playground_db_sg["name"]
+  name        = local.playground_db_sg.name
   vpc_id      = aws_vpc.playground_vpc.id
-  description = var.playground_db_sg["description"]
+  description = local.playground_db_sg.description
 
   dynamic "ingress" {
-    for_each = var.playground_db_sg.sg_ingress
+    for_each = local.playground_db_sg.sg_ingress
     iterator = sg
     content {
       protocol        = "tcp"
@@ -71,6 +80,6 @@ resource "aws_security_group" "playground_db_sg" {
   }
 
   tags = {
-    Name = var.playground_db_sg["name"]
+    Name = local.playground_db_sg.name
   }
 }

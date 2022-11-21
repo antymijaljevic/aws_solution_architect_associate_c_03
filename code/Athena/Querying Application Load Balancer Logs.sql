@@ -38,7 +38,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS alb_logs (
             'serialization.format' = '1',
             'input.regex' = 
         '([^ ]*) ([^ ]*) ([^ ]*) ([^ ]*):([0-9]*) ([^ ]*)[:-]([0-9]*) ([-.0-9]*) ([-.0-9]*) ([-.0-9]*) (|[-0-9]*) (-|[-0-9]*) ([-0-9]*) ([-0-9]*) \"([^ ]*) ([^ ]*) (- |[^ ]*)\" \"([^\"]*)\" ([A-Z0-9-]+) ([A-Za-z0-9.-]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^\"]*)\" ([-.0-9]*) ([^ ]*) \"([^\"]*)\" \"([^\"]*)\" \"([^ ]*)\" \"([^\s]+?)\" \"([^\s]+)\" \"([^ ]*)\" \"([^ ]*)\"')
-            LOCATION 's3://YOUR-BUCKET-NAME/AWSLogs/YOUR-ACCOUNT-NUMBER/elasticloadbalancing/us-east-1/';
+            LOCATION 's3://alb-logs-1223332/AWSLogs/105360013410/elasticloadbalancing/us-east-1/';
 
 -- ** EXAMPLE QUERIES ** --
 

@@ -1,0 +1,3 @@
+aws dynamodb batch-write-item --request-items file://mystore.json
+
+aws dynamodb scan --table-name mystore

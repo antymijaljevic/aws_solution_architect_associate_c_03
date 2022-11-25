@@ -2,8 +2,8 @@ Resources:
   MyInstance:
     Type: AWS::EC2::Instance
     Properties:
-      AvailabilityZone: us-east-1a
+      AvailabilityZone: us-east-1d
       ImageId: ami-0b0dcb5067f052a63
       InstanceType: t2.micro
-      SubnetId: subnet-0532d1ebd30ab8fe6
+      SubnetId: subnet-0fde85091c6a11f19
       
